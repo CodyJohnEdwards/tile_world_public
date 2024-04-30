@@ -39,7 +39,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: /tmp/tmp1c2aabbl.js
+// include: /tmp/tmp4kofd9iv.js
 
   if (!Module.expectedDataFileDownloads) {
     Module.expectedDataFileDownloads = 0;
@@ -219,21 +219,21 @@ var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
 
   })();
 
-// end include: /tmp/tmp1c2aabbl.js
-// include: /tmp/tmp0pvdmz2v.js
+// end include: /tmp/tmp4kofd9iv.js
+// include: /tmp/tmp13j088ho.js
 
     // All the pre-js content up to here must remain later on, we need to run
     // it.
     if (Module['$ww'] || (typeof ENVIRONMENT_IS_PTHREAD != 'undefined' && ENVIRONMENT_IS_PTHREAD)) Module['preRun'] = [];
     var necessaryPreJSTasks = Module['preRun'].slice();
-  // end include: /tmp/tmp0pvdmz2v.js
-// include: /tmp/tmp_nqgwezf.js
+  // end include: /tmp/tmp13j088ho.js
+// include: /tmp/tmp3p5n1mfl.js
 
     if (!Module['preRun']) throw 'Module.preRun should exist because file support used it; did a pre-js delete it?';
     necessaryPreJSTasks.forEach(function(task) {
       if (Module['preRun'].indexOf(task) < 0) throw 'All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?';
     });
-  // end include: /tmp/tmp_nqgwezf.js
+  // end include: /tmp/tmp3p5n1mfl.js
 
 
 // Sometimes an existing Module object exists with properties
@@ -7942,8 +7942,8 @@ var __emscripten_stack_restore = (a0) => (__emscripten_stack_restore = wasmExpor
 var __emscripten_stack_alloc = (a0) => (__emscripten_stack_alloc = wasmExports['_emscripten_stack_alloc'])(a0);
 var _emscripten_stack_get_current = () => (_emscripten_stack_get_current = wasmExports['emscripten_stack_get_current'])();
 var dynCall_jiji = Module['dynCall_jiji'] = createExportWrapper('dynCall_jiji', 5);
-var ___start_em_js = Module['___start_em_js'] = 176452;
-var ___stop_em_js = Module['___stop_em_js'] = 182316;
+var ___start_em_js = Module['___start_em_js'] = 176468;
+var ___stop_em_js = Module['___stop_em_js'] = 182332;
 
 // include: postamble.js
 // === Auto-generated postamble setup entry stuff ===
