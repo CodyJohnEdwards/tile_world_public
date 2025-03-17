@@ -1,31 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ArcanaNet - Gateway</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+    />
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+    ></script>
     <style>
         html {
             font-size: 1.2rem;
         }
         @media screen and (max-width: 1900px) {
-            html { font-size: 1rem; }
+            html {
+                font-size: 1rem;
+            }
         }
         @media screen and (max-width: 1500px) {
-            html { font-size: 0.9rem; }
+            html {
+                font-size: 0.9rem;
+            }
         }
         @media screen and (max-width: 1200px) {
-            html { font-size: 0.8rem; }
+            html {
+                font-size: 0.8rem;
+            }
         }
         @media screen and (max-width: 1000px) {
-            html { font-size: 0.65rem; }
+            html {
+                font-size: 0.65rem;
+            }
         }
         .col {
             padding: 0;
+        }
+        .section-spacer{
+            margin-top: 0.2rem;
+        }
+        .section-item{
+            height: 25%;
         }
         .arcane-container-header {
             border-bottom: 0.2rem solid #00ffff;
@@ -60,6 +81,7 @@
             width: 100%;
             overflow-x: hidden;
             overflow-y: auto;
+            position: relative; /* To position the spinner overlay */
         }
         .game-window {
             width: 100%;
@@ -70,12 +92,20 @@
             outline: none;
         }
         @keyframes rgb-gradient {
-            0% { outline-color: rgb(2,232,165); }
-            50% { outline-color: rgb(0,184,255); }
-            100% { outline-color: rgb(2,232,165); }
+            0% {
+                outline-color: rgb(2, 232, 165);
+            }
+            50% {
+                outline-color: rgb(0, 184, 255);
+            }
+            100% {
+                outline-color: rgb(2, 232, 165);
+            }
         }
         .terminal {
-            height: 99vh;
+            height: 99.4vh;
+            margin: 0.2rem;
+
         }
         .arcane-container {
             box-sizing: border-box;
@@ -86,7 +116,6 @@
             background-origin: padding-box;
             background-repeat: no-repeat;
             animation: rgb-gradient 60s linear infinite;
-            margin: 0.2rem;
             display: block;
         }
         .arcane-container-item {
@@ -114,10 +143,39 @@
             border: 0;
             overflow: hidden;
         }
+        .log{
+            overflow-y: auto;
+            height: 80%;
+        }
         .scanner {
-            height: 99vh;
+            height: 99.4vh;
+            margin: 0.2rem;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+        .player-info {
+            height: 33vh;
             overflow-x: hidden;
             overflow-y: auto;
+        }
+        .player-info {
+            height: 33vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        /* Spinner overlay styling */
+        .spinner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         }
     </style>
 </head>
@@ -127,9 +185,23 @@
         <div class="col-3">
             <div class="row">
                 <div class="arcane-container scanner">
-                    <div id="active-menu">
-                        <div class="arcane-container-header">Header Text</div>
+                    <div class="arcane-container section-item" >
+                        <div class="arcane-container-header">Persona</div>
                         <div class="arcane-container-item">Item Text</div>
+                    </div>
+                    <div class="arcane-container section-spacer section-item">
+                        <div class="arcane-container-header">Actions</div>
+                        <div class="arcane-container-item">Item Text</div>
+                    </div>
+                    <div class="arcane-container section-spacer section-item">
+                        <div class="arcane-container-header">Scanner</div>
+                        <div class="arcane-container-item">Item Text</div>
+                    </div>
+                    <div class="arcane-container section-spacer section-item">
+                        <div class="arcane-container-header">Log</div>
+                        <div class="log" id="log">
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -139,8 +211,16 @@
                 <div class="col">
                     <div class="arcane-container terminal">
                         <div class="game-window-container">
+                            <!-- Spinner overlay (visible while assets load) -->
+                            <div id="spinner" class="spinner-overlay">
+                                <div class="spinner-border text-light" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
                             <canvas width="100%" height="100%" class="game-window" id="glcanvas" tabindex="1"></canvas>
-                            <script src="https://not-fl3.github.io/miniquad-samples/mq_js_bundle.js"></script>
+                            <script src="http_not-fl3.github.io_miniquad-samples_mq_js_bundle.js"></script>
+                            <script src="https://not-fl3.github.io/miniquad-samples/sapp_jsutils.js"></script>
+                            <script src="web-ui.js"></script>
                             <script>
                                 load("r_tile_world.wasm");
                             </script>
@@ -155,6 +235,12 @@
 <script>
     let currentMenu = ".arcane-container-item";
     let menuItems = document.querySelectorAll(currentMenu);
+    // Set up an onclick event for the button
+    document.getElementById("active-menu").addEventListener("click", function () {
+        const eventData = "Button Clicked!";
+        console.log("sending event to rust");
+        sendEventToRust({ eventData: "hello rust" });
+    });
 
     menuItems.forEach(menuItem => {
         addIndicator(menuItem);
