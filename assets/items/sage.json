@@ -1,0 +1,13 @@
+{
+  "counter": {
+    "count": 0,
+    "limit": 0.2
+  },
+  "name": "Sage",
+  "tile": "GRASSA",
+  "_type": "Herb",
+  "prefix": "Weak",
+  "resonance": 1,
+  "status_effects": ["Focused"],
+  "sub_items": []
+}

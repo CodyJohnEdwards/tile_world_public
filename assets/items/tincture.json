@@ -1,0 +1,13 @@
+{
+  "counter": {
+    "count": 0,
+    "limit": 0.5
+  },
+  "name": "Tincture",
+  "tile": "TINCTURE",
+  "_type": "Tincture",
+  "prefix": "Weak",
+  "resonance": 1,
+  "status_effects": [],
+  "sub_items": []
+}

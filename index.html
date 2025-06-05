@@ -2,279 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>ArcanaNet - Gateway</title>
     <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&display=swap"
             rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    />
+    <link
             crossorigin="anonymous"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            rel="stylesheet"
     />
     <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     ></script>
-    <style>
-        html {
-            font-size: 1.2rem;
-        }
-        @media screen and (max-width: 1900px) {
-            html {
-                font-size: 1rem;
-            }
-        }
-        @media screen and (max-width: 1500px) {
-            html {
-                font-size: 0.9rem;
-            }
-        }
-        @media screen and (max-width: 1200px) {
-            html {
-                font-size: 0.8rem;
-            }
-        }
-        @media screen and (max-width: 1000px) {
-            html {
-                font-size: 0.65rem;
-            }
-        }
-        .col {
-            padding: 0;
-        }
-        .section-spacer{
-            margin-top: 0.2rem;
-        }
-        .section-item{
-            height: 25%;
-        }
-        .arcane-container-header {
-            border-bottom: 0.2rem solid #00ffff;
-            max-width: max-content;
-            padding-right: 1rem;
-            margin-bottom: 1rem;
-            font-weight: bolder;
-        }
-        /* Chrome, Edge, and Safari scrollbar styling */
-        *::-webkit-scrollbar {
-            height: 10px;
-            width: 10px;
-        }
-        *::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        *::-webkit-scrollbar-thumb {
-            border-radius: 5px;
-            background-color: rgb(61, 61, 67);
-        }
-        *::-webkit-scrollbar-thumb:hover,
-        *::-webkit-scrollbar-thumb:active {
-            background-color: rgb(61, 61, 67);
-        }
-        body {
-            background: rgb(34, 27, 41);
-            overflow: hidden;
-            font-family: 'Consolas', 'Monaco', 'Lucida Console', 'Courier New', monospace;
-        }
-        .game-window-container {
-            height: 100%;
-            width: 100%;
-            overflow-x: hidden;
-            overflow-y: auto;
-            position: relative; /* To position the spinner overlay */
-        }
-        .game-window {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-        canvas:focus {
-            outline: none;
-        }
-        @keyframes rgb-gradient {
-            0% {
-                outline-color: rgb(2, 232, 165);
-            }
-            50% {
-                outline-color: rgb(0, 184, 255);
-            }
-            100% {
-                outline-color: rgb(2, 232, 165);
-            }
-        }
-        .terminal {
-            height: 99.4vh;
-            margin: 0.2rem;
-
-        }
-        .arcane-container {
-            box-sizing: border-box;
-            color: white;
-            background: #1f1f23;
-            padding: 0.6rem;
-            outline: 0.2rem solid #c14848;
-            background-origin: padding-box;
-            background-repeat: no-repeat;
-            animation: rgb-gradient 60s linear infinite;
-            display: block;
-        }
-        .arcane-container-item {
-            margin: 5px 0 1rem 0;
-            cursor: pointer;
-            text-align: start;
-            border-bottom: 0.2rem solid;
-            margin-right: 1rem;
-        }
-        .arcane-container-item:hover,
-        .arcane-container-item:focus {
-            outline: none;
-        }
-        .arcane-container-item.active {
-            color: #69e061;
-            transition: 0.2s;
-            margin-right: 0;
-        }
-        .cursor {
-            color: #00fffb;
-            transition: 1s;
-        }
-        .arcane-container.terminal {
-            padding: 0;
-            border: 0;
-            overflow: hidden;
-        }
-        .log{
-            overflow-y: auto;
-            height: 80%;
-        }
-        .scanner {
-            height: 99.4vh;
-            margin: 0.2rem;
-            padding: 0;
-            overflow-x: hidden;
-            overflow-y: hidden;
-        }
-        .player-info {
-            height: 33vh;
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
-        .player-info {
-            height: 33vh;
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
-        /* Spinner overlay styling */
-        .spinner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-3">
-            <div class="row">
-                <div class="arcane-container scanner">
-                    <div class="arcane-container section-item" >
-                        <div class="arcane-container-header">Persona</div>
-                        <div class="arcane-container-item">Item Text</div>
-                    </div>
-                    <div class="arcane-container section-spacer section-item">
-                        <div class="arcane-container-header">Actions</div>
-                        <div class="arcane-container-item">Item Text</div>
-                    </div>
-                    <div class="arcane-container section-spacer section-item">
-                        <div class="arcane-container-header">Scanner</div>
-                        <div class="arcane-container-item">Item Text</div>
-                    </div>
-                    <div class="arcane-container section-spacer section-item">
-                        <div class="arcane-container-header">Log</div>
-                        <div class="log" id="log">
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-9">
-            <div class="row">
-                <div class="col">
-                    <div class="arcane-container terminal">
-                        <div class="game-window-container">
-                            <!-- Spinner overlay (visible while assets load) -->
-                            <div id="spinner" class="spinner-overlay">
-                                <div class="spinner-border text-light" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                            </div>
-                            <canvas width="100%" height="100%" class="game-window" id="glcanvas" tabindex="1"></canvas>
-                            <script src="http_not-fl3.github.io_miniquad-samples_mq_js_bundle.js"></script>
-                            <script src="https://not-fl3.github.io/miniquad-samples/sapp_jsutils.js"></script>
-                            <script src="web-ui.js"></script>
-                            <script>
-                                load("r_tile_world.wasm");
-                            </script>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<arcane-modals></arcane-modals>
+<status-row></status-row>
+<arcane-command></arcane-command>
+<arcane-log></arcane-log>
+
+<div class="game-window-container">
+    <div class="spinner-overlay" id="spinner">
+        <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
         </div>
     </div>
+    <canvas width="100%" height="100%" class="game-window" id="glcanvas" tabindex="1"></canvas>
+    <div class="vignette"></div>
+    <script src="js/mq_js_bundle.js"></script>
+    <script src="https://not-fl3.github.io/miniquad-samples/sapp_jsutils.js"></script>
+    <script src="js/wasm-binding.js"></script>
+    <script src="js/electron-wrapper.js"></script>
+    <script type="module" src="js/web-ui.js"></script>
+    <script>load("r_tile_world.wasm");</script>
 </div>
 
+
 <script>
-    let currentMenu = ".arcane-container-item";
-    let menuItems = document.querySelectorAll(currentMenu);
-    // Set up an onclick event for the button
-    document.getElementById("active-menu").addEventListener("click", function () {
-        const eventData = "Button Clicked!";
-        console.log("sending event to rust");
-        sendEventToRust({ eventData: "hello rust" });
-    });
-
-    menuItems.forEach(menuItem => {
-        addIndicator(menuItem);
-        menuItem.addEventListener("mouseenter", function () {
-            let cursors = menuItem.querySelectorAll(".cursor");
-            cursors.forEach(cursor => menuItem.removeChild(cursor));
-            let oldIndicators = menuItem.querySelectorAll(".indicator");
-            oldIndicators.forEach(indicator => menuItem.removeChild(indicator));
-            menuItem.classList.add("active");
-            addCursor(menuItem);
-        });
-        menuItem.addEventListener("mouseleave", function () {
-            let cursors = menuItem.querySelectorAll(".cursor");
-            cursors.forEach(cursor => menuItem.removeChild(cursor));
-            addIndicator(menuItem);
-            menuItem.classList.remove("active");
-        });
-
-        function addIndicator(menuItem) {
-            let oldIndicators = menuItem.querySelectorAll(".indicator");
-            oldIndicators.forEach(indicator => menuItem.removeChild(indicator));
-            let cursors = menuItem.querySelectorAll(".cursor");
-            cursors.forEach(cursor => menuItem.removeChild(cursor));
-            let indicator = document.createElement("span");
-            indicator.classList.add("indicator");
-            indicator.innerText = "● ";
-            menuItem.prepend(indicator);
-        }
-
-        function addCursor(menuItem) {
-            let cursor = document.createElement("span");
-            cursor.innerText = "➜ ";
-            cursor.classList.add("cursor");
-            menuItem.prepend(cursor);
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Shift' && !e.repeat) {
+            const v = document.querySelector('.vignette');
+            const g = document.querySelector('.game-window');
+            v.classList.toggle('expanded');
+            g.classList.toggle('inactive');
+            
+            document.querySelectorAll('.modal.show').forEach(modalEl => {
+                
+                bootstrap.Modal.getOrCreateInstance(modalEl).hide();
+            });
         }
     });
 </script>
