@@ -76,6 +76,16 @@ class ArcaneCommand extends HTMLElement {
             { itemId: 'refineItem', modalId: 'refineModal' }
         ];
 
+        // Items whose modals are not yet functional should be disabled
+        const disabledItems = [
+            'statusItem',
+            'aeonItem',
+            'honeItem',
+            'refineItem',
+            'distillItem',
+            'settingsItem'
+        ];
+
         
         this._modalInstances = this._modalInstances || {};
         const logoutElement = this.querySelector(`#logoutItem`);
@@ -84,26 +94,31 @@ class ArcaneCommand extends HTMLElement {
         });
         modalMappings.forEach(({ itemId, modalId }) => {
             const menuItem = this.querySelector(`#${itemId}`);
-            if (menuItem) {
-                menuItem.addEventListener('click', () => {
-                    if (window.bootstrap) {
-                        
-                        if (!this._modalInstances[itemId]) {
-                            const modalElement = document.querySelector(`#${modalId}`);
-                            if (modalElement) {
-                                this._modalInstances[itemId] = new bootstrap.Modal(modalElement);
-                            } else {
-                                console.warn(`Modal element with id "${modalId}" not found.`);
-                                return;
-                            }
-                        }
-                        this._modalInstances[itemId].show();
-                        decorateUI(document);
-                    } else {
-                        console.warn("Bootstrap's JavaScript is not loaded or modal element is missing.");
-                    }
-                });
+            if (!menuItem) return;
+
+            if (disabledItems.includes(itemId)) {
+                menuItem.classList.add('menu-disabled');
+                return;
             }
+
+            menuItem.addEventListener('click', () => {
+                if (window.bootstrap) {
+
+                    if (!this._modalInstances[itemId]) {
+                        const modalElement = document.querySelector(`#${modalId}`);
+                        if (modalElement) {
+                            this._modalInstances[itemId] = new bootstrap.Modal(modalElement);
+                        } else {
+                            console.warn(`Modal element with id "${modalId}" not found.`);
+                            return;
+                        }
+                    }
+                    this._modalInstances[itemId].show();
+                    decorateUI(document);
+                } else {
+                    console.warn("Bootstrap's JavaScript is not loaded or modal element is missing.");
+                }
+            });
         });
 
         decorateUI(document);

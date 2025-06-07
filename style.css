@@ -150,7 +150,50 @@ canvas:focus {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     z-index: 1000;
+}
+
+.hexagon-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.hexagon {
+    position: relative;
+    width: 60px;
+    height: 34.64px;
+    background: #fff;
+    animation: spin 1s linear infinite;
+}
+.hexagon:before,
+.hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+}
+.hexagon:before {
+    bottom: 100%;
+    border-bottom: 17.32px solid #fff;
+}
+.hexagon:after {
+    top: 100%;
+    width: 0;
+    border-top: 17.32px solid #fff;
+}
+
+#loading-progress {
+    color: #fff;
+    font-family: 'Fira Code', monospace;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 .game-window {
     width: 100%;
@@ -440,6 +483,12 @@ label {
     opacity: 0.6;
     cursor: not-allowed;
 }
+
+.menu-disabled{
+    color: gray;
+    cursor: not-allowed;
+    pointer-events: none;
+}
 .w-10{ width: 10%; }
 .w-15{
     width: 15%;
@@ -471,6 +520,24 @@ label {
 .bg-secondary{
     background-color: rgb(1, 39, 77) !important;
     border-radius: 0.2rem;
+}
+
+/* Toast styling to match arcane theme */
+.arcane-toast {
+    color: white;
+    background: rgba(31, 31, 35, 0.85);
+    outline: 1.4px solid #c14848;
+    animation: rgb-gradient 60s linear infinite;
+}
+
+.arcane-toast .toast-header {
+    background: transparent;
+    border-bottom: 1px solid #c14848;
+    color: white;
+}
+
+.arcane-toast .btn-close {
+    filter: invert(1);
 }
 
 

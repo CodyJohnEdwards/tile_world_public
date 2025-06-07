@@ -1,6 +1,6 @@
-import { decorateUI } from "../../util/ui-decorator.js";
-import { getLevelFromXP } from "../../util/rank-calculator.js";
-import { ServerEvent } from "../../constants/server_events.js";
+import {decorateUI} from "../../util/ui-decorator.js";
+import {getLevelFromXP} from "../../util/rank-calculator.js";
+import {ServerEvent} from "../../constants/server_events.js";
 
 class LoginModal extends HTMLElement {
     constructor() {
@@ -131,7 +131,7 @@ class LoginModal extends HTMLElement {
         }
     }
 
-    
+
     handleNewSave(playerInfo) {
         console.log(playerInfo.name);
         if (window.electron && typeof window.electron.createNewSave === "function") {
@@ -141,13 +141,15 @@ class LoginModal extends HTMLElement {
         }
     }
 
-    
+    showAccountModal() {
+        this.modals.account.show();
+    }
+
+
     connectedCallback() {
         this.initializeModals();
         this.bindEventListeners();
         this.loadAccountData();
-        
-        this.modals.account.show();
         decorateUI(document);
     }
 

@@ -30,9 +30,10 @@
 
 <div class="game-window-container">
     <div class="spinner-overlay" id="spinner">
-        <div class="spinner-border text-light" role="status">
-            <span class="visually-hidden">Loading...</span>
+        <div class="hexagon-spinner">
+            <div class="hexagon"></div>
         </div>
+        <div id="loading-progress">0%</div>
     </div>
     <canvas width="100%" height="100%" class="game-window" id="glcanvas" tabindex="1"></canvas>
     <div class="vignette"></div>
@@ -40,8 +41,59 @@
     <script src="https://not-fl3.github.io/miniquad-samples/sapp_jsutils.js"></script>
     <script src="js/wasm-binding.js"></script>
     <script src="js/electron-wrapper.js"></script>
-    <script type="module" src="js/web-ui.js"></script>
-    <script>load("r_tile_world.wasm");</script>
+    <script type="module">
+        import { loadWasmWithProgress } from './js/wasm-loader.js';
+        import startWebUI from './js/web-ui.js';
+
+        const progressEl = document.getElementById('loading-progress');
+        let wasmPct = 0;
+        function updateProgress() {
+            if (progressEl) {
+                progressEl.textContent = wasmPct + '%';
+            }
+        }
+
+        loadWasmWithProgress('r_tile_world.wasm', pct => {
+            wasmPct = pct;
+            updateProgress();
+        }).then(() => {
+            const spinnerStyle = document.getElementById('spinner')?.style;
+            if (spinnerStyle) spinnerStyle.display = 'none';
+            document.querySelector('login-modal')?.showAccountModal();
+            startWebUI();
+        });
+    </script>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="control-toast-container" style="z-index: 1200;">
+    <div class="toast arcane-toast" id="toast-shift" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="7000">
+        <div class="toast-header">
+            <strong class="me-auto">Controls</strong>
+            <button type="button" class="btn-close btn-close-white ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">Hold <kbd>Shift</kbd> to toggle the menu</div>
+    </div>
+    <div class="toast arcane-toast" id="toast-click" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="7000">
+        <div class="toast-header">
+            <strong class="me-auto">Controls</strong>
+            <button type="button" class="btn-close btn-close-white ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">Click to select path</div>
+    </div>
+    <div class="toast arcane-toast" id="toast-rmb" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="7000">
+        <div class="toast-header">
+            <strong class="me-auto">Controls</strong>
+            <button type="button" class="btn-close btn-close-white ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">Right click to remove path item</div>
+    </div>
+    <div class="toast arcane-toast" id="toast-scroll" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="7000">
+        <div class="toast-header">
+            <strong class="me-auto">Controls</strong>
+            <button type="button" class="btn-close btn-close-white ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">Scroll to zoom</div>
+    </div>
 </div>
 
 
@@ -52,13 +104,13 @@
             const g = document.querySelector('.game-window');
             v.classList.toggle('expanded');
             g.classList.toggle('inactive');
-            
+
             document.querySelectorAll('.modal.show').forEach(modalEl => {
-                
+
                 bootstrap.Modal.getOrCreateInstance(modalEl).hide();
             });
         }
     });
-</script>
+    </script>
 </body>
 </html>

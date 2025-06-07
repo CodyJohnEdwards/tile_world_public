@@ -1,6 +1,6 @@
-import "./util/ui-decorator.js"
-import "./components/mod.js"
-import { ServerEvent } from "./constants/server_events.js";
+import "./util/ui-decorator.js";
+import "./components/mod.js";
+import {ServerEvent} from "./constants/server_events.js";
 
 async function prefetch() {
   let items = await window.electron.prefetch();
@@ -13,14 +13,26 @@ function init() {
   initAutoSave();
 }
 
+function showControlToasts() {
+  document.querySelectorAll('#control-toast-container .toast')
+      .forEach((toastEl, idx) => {
+        const toast = new bootstrap.Toast(toastEl);
+        setTimeout(() => toast.show(), idx * 500);
+      });
+}
+
 function handleFirstEvent() {
   registerGnoSysServerEventHandler(ServerEvent.PLAYER_UPDATE, playerInfo => {
-    let loading_spinner = document.getElementById("spinner").style;
-    if (loading_spinner.display !== "none") {
-      loading_spinner.display = "none";
-    }
     window.sendPlayerInfoCount = window.sendPlayerInfoCount || 0;
     window.sendPlayerInfoCount++;
+  });
+
+  let controlToastShown = false;
+  registerGnoSysServerEventHandler(ServerEvent.GAME_STATE_CHANGED, state => {
+    if (state === "PLAYING" && !controlToastShown) {
+      showControlToasts();
+      controlToastShown = true;
+    }
   });
 }
 
@@ -36,4 +48,6 @@ function initAutoSave() {
   });
 }
 
-init();
+export default function startWebUI() {
+  init();
+}
