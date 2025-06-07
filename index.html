@@ -43,7 +43,7 @@
     <script src="js/electron-wrapper.js"></script>
     <script type="module">
         import { loadWasmWithProgress } from './js/wasm-loader.js';
-        import startWebUI from './js/web-ui.js';
+        import { startWebUI } from './js/web-ui.js';
 
         const progressEl = document.getElementById('loading-progress');
         let wasmPct = 0;

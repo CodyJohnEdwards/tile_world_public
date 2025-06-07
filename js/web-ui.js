@@ -48,6 +48,8 @@ function initAutoSave() {
   });
 }
 
-export default function startWebUI() {
+export function startWebUI() {
   init();
 }
+
+export default startWebUI;
