@@ -28,6 +28,11 @@ function handleFirstEvent() {
   });
 
   let controlToastShown = false;
+  registerGnoSysServerEventHandler(ServerEvent.LOADING_PROGRESS, p =>{
+      const spinnerStyle = document.getElementById('spinner')?.style;
+      if (spinnerStyle) spinnerStyle.display = 'none';
+      document.querySelector('login-modal')?.showAccountModal();
+  })
   registerGnoSysServerEventHandler(ServerEvent.GAME_STATE_CHANGED, state => {
     if (state === "PLAYING" && !controlToastShown) {
       showControlToasts();

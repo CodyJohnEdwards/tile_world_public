@@ -57,9 +57,6 @@
             wasmPct = pct;
             updateProgress();
         }).then(() => {
-            const spinnerStyle = document.getElementById('spinner')?.style;
-            if (spinnerStyle) spinnerStyle.display = 'none';
-            document.querySelector('login-modal')?.showAccountModal();
             startWebUI();
         });
     </script>
