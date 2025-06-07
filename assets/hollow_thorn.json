@@ -1,0 +1,9 @@
+{
+  "counter": {
+    "count": 0.0,
+    "limit": 0.2
+  },
+  "name": "Hollow Thorn",
+  "tile": "GRASSA",
+  "sub_items": []
+}
