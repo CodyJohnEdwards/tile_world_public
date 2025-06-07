@@ -142,7 +142,14 @@ class LoginModal extends HTMLElement {
     }
 
     showAccountModal() {
-        this.modals.account.show();
+        const accountEl = document.getElementById('accountModal');
+        const loginEl = document.getElementById('loginModal');
+        const accountVisible = accountEl?.classList.contains('show');
+        const loginVisible = loginEl?.classList.contains('show');
+
+        if (!accountVisible && !loginVisible) {
+            this.modals.account.show();
+        }
     }
 
 
