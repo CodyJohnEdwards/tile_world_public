@@ -1,7 +1,7 @@
 {
   "counter": {
     "count": 0,
-    "limit": 0.2
+    "limit": 0.5
   },
   "name": "Hollow Thorn",
   "tile": "GRASSA",
