@@ -1,9 +1,0 @@
-{
-  "counter": {
-    "count": 0.0,
-    "limit": 0.2
-  },
-  "name": "Mushroom",
-  "tile": "MUSHROOM",
-  "sub_items": []
-}
