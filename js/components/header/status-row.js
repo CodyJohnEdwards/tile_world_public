@@ -40,15 +40,15 @@ class StatusRow extends HTMLElement {
         createSection('name', '');
         createSection('health', '');
         createSection('energy', '');
-        createSection('rank', '');
         createSection('pleroma', '');
+        createSection('rank', '');
 
         registerGnoSysServerEventHandler(ServerEvent.PLAYER_UPDATE, playerInfo => {
             this.updateActiveEffects(playerInfo);
             this.sections['name'].textContent = playerInfo.name;
             this.sections['health'].textContent = `Vitality | ${playerInfo.health}/${playerInfo.max_health}`;
-            this.sections['energy'].textContent = `Energy | ${playerInfo.energy}/${playerInfo.max_energy}`;
-            this.sections['rank'].textContent = `Rank | ${getLevelFromXP(playerInfo.pleroma)}`;
+            this.sections['energy'].textContent = `Virility | ${playerInfo.energy}/${playerInfo.max_energy}`;
+            this.sections['rank'].textContent = `*** ${getLevelFromXP(playerInfo.pleroma)}`;
             this.sections['pleroma'].textContent = `Pleroma | ${playerInfo.pleroma}`;
         });
 

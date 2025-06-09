@@ -10,13 +10,13 @@ class ArcaneCommand extends HTMLElement {
             <!-- Persona section starts expanded -->
             <div class="arcane-container-header">⬡ Persona</div>
             <div class="arcane-container-item hex-collapse" id="statusItem">Check / Status</div>
-            <div class="arcane-container-item hex-collapse" id="aeonItem">Augment / Aeons</div>
-            <div class="arcane-container-item hex-collapse" id="inventoryItem">Inspect / Inventory</div>
+            <div class="arcane-container-item hex-collapse" id="aeonItem">Amplify / Emanation</div>
+            <div class="arcane-container-item hex-collapse" id="inventoryItem">Consume / Tincture</div>
             
             <!-- Equipment section starts collapsed -->
             <div class="arcane-container-header">⬡ Equipment</div>
-            <div class="arcane-container-item hex-collapse" id="honeItem">Hone / Sword</div>
-            <div class="arcane-container-item hex-collapse" id="refineItem">Refine / Bow</div>
+            <div class="arcane-container-item hex-collapse" id="honeItem">Forge / Sword</div>
+            <div class="arcane-container-item hex-collapse" id="refineItem">Fletch / Arrow</div>
             
             <!-- Alchemy section starts collapsed -->
             <div class="arcane-container-header">⬡ Alchemy</div>
@@ -79,7 +79,7 @@ class ArcaneCommand extends HTMLElement {
         // Items whose modals are not yet functional should be disabled
         const disabledItems = [
             'statusItem',
-            'aeonItem',
+            // 'aeonItem',
             'honeItem',
             'refineItem',
             'distillItem',

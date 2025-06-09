@@ -17,7 +17,7 @@ class InventoryModal extends HTMLElement {
           <div class="modal-content arcane-container" style="background: #1f1f23;">
             <div class="modal-header">
               <h1 class="modal-title arcane-container-header fs-5" id="exampleModalLabel">
-                Inspect / Inventory
+                Consume / Tincture
               </h1>
               <button 
                 type="button" 
@@ -42,12 +42,12 @@ class InventoryModal extends HTMLElement {
     }
 
     connectedCallback() {
-        
         registerGnoSysServerEventHandler(ServerEvent.PLAYER_UPDATE, (playerInfo) => {
-            const json = JSON.stringify(playerInfo.inventory.slots);
-            if (json === this.previousInventoryJSON) return;  
+            const slots = playerInfo.inventory.slots.filter(slot => slot.item._type === "Tincture");
+            const json = JSON.stringify(slots);
+            if (json === this.previousInventoryJSON) return;
             this.previousInventoryJSON = json;
-            this.lastSlots = playerInfo.inventory.slots;
+            this.lastSlots = slots;
             this.renderSlots();
         });
 

@@ -1,6 +1,6 @@
 import "./status-modal.js"
 import "./augment-aeons.js"
-import "./inventory-modal.js"
+import "./tincture-inventory-modal.js"
 import "./hone-sword.js"
 import "./refine-bow.js"
 import "./brew-tincture.js"
