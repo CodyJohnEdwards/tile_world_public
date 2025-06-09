@@ -1,5 +1,4 @@
 import {decorateUI} from "../../util/ui-decorator.js";
-import {getLevelFromXP} from "../../util/rank-calculator.js";
 import {ServerEvent} from "../../constants/server_events.js";
 
 class LoginModal extends HTMLElement {
@@ -92,7 +91,7 @@ class LoginModal extends HTMLElement {
                     const accountItem = document.createElement('div');
                     accountItem.innerHTML = `
                             <span class="w-20">${account.name}</span>
-                            <span class="w-20">| Rank: ${getLevelFromXP(account.pleroma)}</span> 
+                            <span class="w-20">| Rank: ${account.rank}</span>
                             <span class="w-20">| Pleroma: ${account.pleroma}</span>
                             <span class="w-20">| Playtime: 12:23:22</span>
                     `;

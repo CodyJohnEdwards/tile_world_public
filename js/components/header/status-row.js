@@ -1,4 +1,3 @@
-import {getLevelFromXP} from "../../util/rank-calculator.js";
 import {ServerEvent} from "../../constants/server_events.js";
 import {STATUS_EFFECT_IMAGE_MAPPINGS} from "../../constants/status_effect_image_mappings.js";
 
@@ -48,7 +47,7 @@ class StatusRow extends HTMLElement {
             this.sections['name'].textContent = playerInfo.name;
             this.sections['health'].textContent = `Vitality | ${playerInfo.health}/${playerInfo.max_health}`;
             this.sections['energy'].textContent = `Virility | ${playerInfo.energy}/${playerInfo.max_energy}`;
-            this.sections['rank'].textContent = `*** ${getLevelFromXP(playerInfo.pleroma)}`;
+            this.sections['rank'].textContent = `*** ${playerInfo.rank}`;
             this.sections['pleroma'].textContent = `Pleroma | ${playerInfo.pleroma}`;
         });
 
