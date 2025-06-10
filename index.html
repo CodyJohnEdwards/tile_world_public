@@ -27,6 +27,7 @@
 <status-row></status-row>
 <arcane-command></arcane-command>
 <arcane-log></arcane-log>
+<client-notification></client-notification>
 
 <div class="game-window-container">
     <div class="spinner-overlay" id="spinner">
@@ -51,6 +52,8 @@
         });
     </script>
 </div>
+
+<div class="toast-container position-fixed top-0 end-0 p-3" id="notification-toast-container" style="z-index: 1300;"></div>
 
 <div class="toast-container position-fixed bottom-0 end-0 p-3" id="control-toast-container" style="z-index: 1200;">
     <div class="toast arcane-toast" id="toast-shift" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="7000">
@@ -85,12 +88,24 @@
 
 
 <script>
+    window.shiftMenuActive = false;
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Shift' && !e.repeat) {
             const v = document.querySelector('.vignette');
             const g = document.querySelector('.game-window');
             v.classList.toggle('expanded');
             g.classList.toggle('inactive');
+
+            window.shiftMenuActive = !window.shiftMenuActive;
+            if (window.shiftMenuActive) {
+                if (window.collapseNotifications) {
+                    window.collapseNotifications();
+                }
+            } else if (window.notificationQueue) {
+                while (window.notificationQueue.length) {
+                    window.showClientNotification(window.notificationQueue.shift());
+                }
+            }
 
             document.querySelectorAll('.modal.show').forEach(modalEl => {
 

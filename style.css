@@ -532,7 +532,7 @@ label {
 
 .arcane-toast .toast-header {
     background: transparent;
-    border-bottom: 1px solid #c14848;
+    /*border-bottom: 1px solid #c14848;*/
     color: white;
 }
 
