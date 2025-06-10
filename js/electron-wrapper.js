@@ -22,6 +22,8 @@
     'mushroom.json',
     'sage.json',
     'tincture.json',
+    'energy_eminence.json',
+    'vitality_eminence.json'
   ];
 
   function loadLocalSaves() {
